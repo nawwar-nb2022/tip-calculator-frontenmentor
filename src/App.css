@@ -1,38 +1,228 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Space Mono", monospace;
+  text-transform: capitalize;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --VeryDarkCyan: #00494d;
+  --DarkGrayCyan: #5e7a7d;
+  --GrayCyan: #7f9c9f;
+  --LightGrayCyan: #c5e4e7;
+  --VeryLightGrayCyan: #f4fafa;
+  --inputText: 24px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.mainWrapper {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: var(--LightGrayCyan);
+
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.mainContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: white;
+  width: 650px;
+  border-radius: 20px;
+  padding: 30px 20px;
+}
+
+.itemSection {
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 0 7%;
+}
+
+.BillHeader,
+.TipHeader,
+.NumberHeader {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--VeryDarkCyan);
+}
+
+.inputContainer {
+  width: 100%;
+  background-color: var(--VeryLightGrayCyan);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  transition: 0.5s ease all;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+.focus {
+  /* border: 1px solid #0f6d70; */
+  box-shadow: 0px 0px 5px var(--VeryDarkCyan);
+}
+.inputContainer input {
+  background-color: inherit;
+  color: var(--DarkGrayCyan);
+  width: max-content;
+  border: none;
+  direction: rtl;
+  font-size: 1.1rem;
+  outline: none;
+}
+.NumberHeader {
+  margin-bottom: 10px;
+}
+.TipsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.Tip {
+  background-color: var(--VeryDarkCyan);
   color: white;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Tip.Active {
+  background-color: #38bfb1;
 }
 
-.App-link {
-  color: #61dafb;
+.Tip.custom {
+  background-color: var(--VeryLightGrayCyan);
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.Tip.custom input {
+  background: inherit;
+  border: none;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--GrayCyan);
+  letter-spacing: 0.2;
+  border-radius: 5px;
+  height: 100%;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.Tip.custom input:focus {
+  border: 1px solid var(--GrayCyan);
+}
+.outputContainer {
+  background-color: var(--VeryDarkCyan);
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-left: 5%;
+  border-radius: 10px;
+  padding: 25px;
+}
+.valuesContainer {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.Amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.leftAmount {
+  font-size: 11px;
+}
+
+.leftAmount p {
+  color: var(--GrayCyan);
+  font-size: 9px;
+}
+.rightAmount {
+  font-size: 24px;
+  color: #38bfb1;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rightAmount svg {
+  margin-right: 4px;
+}
+
+.Reset {
+  width: 100%;
+}
+.btn {
+  width: 100%;
+  padding: 8px 0;
+  background-color: #38bfb1;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  color: var(--VeryDarkCyan);
+  cursor: pointer;
+}
+.btn.disable {
+  background-color: #0f6d70;
+  color: #114849;
+}
+
+.BillSection,
+.PeopleNumberSection,
+.TipSection {
+  position: relative;
+}
+.error {
+  position: absolute;
+  color: crimson;
+  font-size: 12px;
+  right: 18%;
+  top: 0;
+}
+.error + .inputContainer {
+  border: 1px solid crimson;
+}
+
+@media only screen and (max-width: 600px) {
+  .mainContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  to {
-    transform: rotate(360deg);
+  .Reset {
+    margin-top: 40px;
   }
 }
